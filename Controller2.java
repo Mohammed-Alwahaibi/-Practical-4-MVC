@@ -18,15 +18,16 @@ public class Controller2 extends JFrame
     private View4 view4;
     private JButton clearViews;   // For direct message to views
     private JButton refreshViews; // To prompt them to refresh their contents from the model
- 
+    private JButton incB;
     // Constructor
-    public Controller2(Model model) {
+    public Controller2(Model model, String title2) {
     
         // Record reference to the model
         this.model = model;
         
         // Configure the window
-        setTitle("Controller2");
+        //setTitle("Controller2");
+        setTitle(title2);
         setLocation(40,200);
         setSize(350,150);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -37,9 +38,14 @@ public class Controller2 extends JFrame
         clearViews = new JButton("Clear views");
         window.add(clearViews);
         clearViews.addActionListener(this);
-        refreshViews = new JButton("Refresh views");
-        window.add(refreshViews);
-        refreshViews.addActionListener(this);
+        //refreshViews = new JButton("Refresh views");
+        //window.add(refreshViews);
+        //refreshViews.addActionListener(this);
+        
+        incB = new JButton("Increment B");
+        window.add(incB);
+        incB.addActionListener(this);
+
         // Create views
         view3 = new View3(this, model);
         window.add(view3);
@@ -58,13 +64,16 @@ public class Controller2 extends JFrame
             view3.clear();
             view4.clear();
         }
-        if (e.getSource() == refreshViews) {
+        
+        else if (e.getSource() == incB) 
+            model.modifyB();  
+
+                
+        /*if (e.getSource() == refreshViews) {
             view3.update();
             view4.update();
-        }
+        }*/
         
     } // actionPerformed
     
 } // class Controller2
-
-
